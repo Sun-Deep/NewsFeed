@@ -1,3 +1,4 @@
+import { CommentIcon } from "../../components/atoms/Reactions"
 import UserName from "../../components/atoms/UserName"
 
 
