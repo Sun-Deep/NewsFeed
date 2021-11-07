@@ -1,0 +1,7 @@
+.primary-btn {
+    padding: .5em 2em;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
