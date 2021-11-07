@@ -3,6 +3,7 @@ import FeedCard from "../../components/organisms/FeedCard"
 import PrimaryButton from '../../components/atoms/Button/Primary'
 import InputText from '../../components/atoms/Form/InputText'
 import { useState } from 'react'
+import InputFile from '../../components/atoms/Form/InputFile'
 
 
 const Landing = () => {
@@ -11,7 +12,7 @@ const Landing = () => {
     >
 
         <PrimaryButton text='upload' />
-
+        <InputFile />
 
 <div
     className='feed-container'
