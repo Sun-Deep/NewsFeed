@@ -26,7 +26,7 @@ const Landing = () => {
     }
 
     const handleFileName = (e) => {
-        setFileName(e.target.value)
+        setFileName(e.target.files[0])
     }
 
     const handleSearch = () => {
@@ -36,15 +36,17 @@ const Landing = () => {
                 setData(res.data)
             }
         }).catch((err) => {
-            alert(err.response)
+            alert(err.response.data)
         })
     }
 
     const handleFile = () => {
-        console.log(fileName)
+        const fileReader = new FileReader()
+        fileReader.readAsText(fileName, "UTF-8");
+        fileReader.onload = e => {
+            setData(JSON.parse(e.target.result));
+        };
     }
-
-    console.log(data)
 
     return <div
         className='container'
@@ -96,6 +98,10 @@ const Landing = () => {
         <div
             className='feed-container'
         >
+
+            {
+
+            }
 
             {
                 data && data.length > 0 && data.map((info, idx) => (
