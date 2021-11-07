@@ -1,7 +1,8 @@
 .feedcard-container {
-    width: 300px;
+    width: 320px;
     height: 460px;
     position: relative;
+    border-radius: 32px;
 }
 
 .feedcard-info {
@@ -21,4 +22,9 @@
 .user-container {
     display: flex;
     justify-content: space-between;
+}
+
+.reaction-container {
+    display: flex;
+    gap: 1em;
 }

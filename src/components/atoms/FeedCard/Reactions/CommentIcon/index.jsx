@@ -1,7 +1,9 @@
 import { AiFillMessage } from 'react-icons/ai'
 
 const CommentIcon = () => {
-    return <AiFillMessage />
+    return <AiFillMessage
+        className='white' 
+    />
 }
 
 export default CommentIcon

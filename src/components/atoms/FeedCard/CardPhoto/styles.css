@@ -1,5 +1,6 @@
 .card-photo {
-    width: 300px;
+    width: 320px;
     height: 460px;
     object-fit: cover;
+    border-radius: 32px;
 }

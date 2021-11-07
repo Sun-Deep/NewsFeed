@@ -1,5 +1,9 @@
 const UserName = ({ text }) => {
-    return <p>{text}</p>
+    return <p
+        className='white'
+    >
+        {text}
+    </p>
 }
 
 export default UserName
