@@ -1,13 +1,17 @@
 import './styles.css'
 import FeedCard from "../../components/organisms/FeedCard"
 import PrimaryButton from '../../components/atoms/Button/Primary'
+import InputText from '../../components/atoms/Form/InputText'
+import { useState } from 'react'
 
 
 const Landing = () => {
+
     return <div
     >
 
         <PrimaryButton text='upload' />
+
 
 <div
     className='feed-container'
