@@ -1,4 +1,4 @@
 .input-text{
-    width: 100%;
-    padding: .7rem;
+    padding: .3em;
+    min-width: 400px !important;
 }

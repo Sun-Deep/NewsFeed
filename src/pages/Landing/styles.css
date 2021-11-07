@@ -1,7 +1,26 @@
+.container {
+    max-width: 1200px;
+    width: auto;
+    margin: 10px auto;
+}
+
+.api-section {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 .feed-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    margin: 1em;
+    margin-top: 1em;
+}
+
+.inputfield{
+    display: flex;
+    gap: 1rem;
 }

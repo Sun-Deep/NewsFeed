@@ -1,7 +1,7 @@
 import { MdOutlineToggleOff } from 'react-icons/md'
 
 const ToggleOff = () => {
-    return <MdOutlineToggleOff />
+    return <MdOutlineToggleOff fontSize={40} />
 }
 
 export default ToggleOff

@@ -2,18 +2,54 @@ import './styles.css'
 import FeedCard from "../../components/organisms/FeedCard"
 import PrimaryButton from '../../components/atoms/Button/Primary'
 import InputText from '../../components/atoms/Form/InputText'
+import ToggleOn from '../../components/atoms/Toggle/ToggleOn'
 import { useState } from 'react'
 import InputFile from '../../components/atoms/Form/InputFile'
+import ToggleOff from '../../components/atoms/Toggle/ToggleOff'
 
 
 const Landing = () => {
 
+    const [isFile, setIsFile] = useState(false)
+
+    const handleToggle = () => {
+        setIsFile(!isFile)
+    }
+
     return <div
+        className='container'
     >
+       <div
+            className='api-section'
+       >
 
-        <PrimaryButton text='upload' />
-        <InputFile />
+           {
+               isFile ?  <div
+               className='inputfield'
+              >
+   
+                   <InputText placeholder='Please enter api endpoint' />
+                   <PrimaryButton text='search'  />
+              </div>
+              :  <div
+              className='inputfield'
+             >
+  
+                  <InputFile />
+                  <PrimaryButton text='upload'  />
+             </div>
+           }
+          
 
+           <div
+            onClick={handleToggle}
+           >
+               {
+                   isFile ? <ToggleOn /> : <ToggleOff />
+               }
+               
+           </div>
+       </div>
 <div
     className='feed-container'
 >
