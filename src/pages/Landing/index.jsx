@@ -1,9 +1,10 @@
+import { useState } from 'react'
+
 import './styles.css'
 import FeedCard from "../../components/organisms/FeedCard"
 import PrimaryButton from '../../components/atoms/Button/Primary'
 import InputText from '../../components/atoms/Form/InputText'
 import ToggleOn from '../../components/atoms/Toggle/ToggleOn'
-import { useState } from 'react'
 import InputFile from '../../components/atoms/Form/InputFile'
 import ToggleOff from '../../components/atoms/Toggle/ToggleOff'
 
@@ -11,9 +12,27 @@ import ToggleOff from '../../components/atoms/Toggle/ToggleOff'
 const Landing = () => {
 
     const [isFile, setIsFile] = useState(false)
+    const [apiEndpoint, setApiEndpoint] = useState('')
+    const [fileName, setFileName] = useState('')
 
     const handleToggle = () => {
         setIsFile(!isFile)
+    }
+
+    const handleApiEndpoint = (e) => {
+        setApiEndpoint(e.target.value)
+    }
+
+    const handleFileName = (e) => {
+        setFileName(e.target.value)
+    }
+
+    const handleSearch = () => {
+        console.log(apiEndpoint)
+    }
+
+    const handleFile = () => {
+        console.log(fileName)
     }
 
     return <div
@@ -28,15 +47,28 @@ const Landing = () => {
                className='inputfield'
               >
    
-                   <InputText placeholder='Please enter api endpoint' />
-                   <PrimaryButton text='search'  />
+                   <InputText 
+                        placeholder='Please enter api endpoint'
+                        apiEndpoint={apiEndpoint}
+                        handleApiEndpoint={handleApiEndpoint}
+                    />
+                   <PrimaryButton 
+                        text='search'
+                        handleAction={handleSearch}
+                    />
               </div>
               :  <div
               className='inputfield'
              >
   
-                  <InputFile />
-                  <PrimaryButton text='upload'  />
+                <InputFile
+                    fileName={fileName}
+                    handleFile={handleFileName}
+                />
+                  <PrimaryButton 
+                    text='upload'
+                    handleAction={handleFile}
+                />
              </div>
            }
           
