@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 import './styles.css'
 import FeedCard from "../../components/organisms/FeedCard"
@@ -14,6 +15,7 @@ const Landing = () => {
     const [isFile, setIsFile] = useState(false)
     const [apiEndpoint, setApiEndpoint] = useState('')
     const [fileName, setFileName] = useState('')
+    const [data, setData] = useState([])
 
     const handleToggle = () => {
         setIsFile(!isFile)
@@ -28,12 +30,21 @@ const Landing = () => {
     }
 
     const handleSearch = () => {
-        console.log(apiEndpoint)
+        axios.get(apiEndpoint).then((res) => {
+            console.log(res.data)
+            if(res.data.length > 0){
+                setData(res.data)
+            }
+        }).catch((err) => {
+            alert(err.response)
+        })
     }
 
     const handleFile = () => {
         console.log(fileName)
     }
+
+    console.log(data)
 
     return <div
         className='container'
@@ -82,36 +93,24 @@ const Landing = () => {
                
            </div>
        </div>
-<div
-    className='feed-container'
->
-<FeedCard 
-            cardPhoto='https://i.picsum.photos/id/1026/4621/3070.jpg?hmac=OJ880cIneqAKIwHbYgkRZxQcuMgFZ4IZKJasZ5c5Wcw'
-            cardTitle='2132: Guardian'
-            userImage='https://randomuser.me/api/portraits/women/63.jpg'
-            userName='Constance Evans'
-            likeCount={54}
-            commentCount={22}
-        />
-        <FeedCard 
-            cardPhoto='https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM'
-            cardTitle='Copper Heart'
-            userImage='https://randomuser.me/api/portraits/women/58.jpg'
-            userName='Gina Stevens'
-            likeCount={33}
-            commentCount={3}
-        />
-        <FeedCard 
-            cardPhoto='https://i.picsum.photos/id/1026/4621/3070.jpg?hmac=OJ880cIneqAKIwHbYgkRZxQcuMgFZ4IZKJasZ5c5Wcw'
-            cardTitle='2132: Guardian'
-            userImage='https://randomuser.me/api/portraits/women/63.jpg'
-            userName='Constance Evans'
-            likeCount={54}
-            commentCount={22}
-        />
-</div>
+        <div
+            className='feed-container'
+        >
 
-       
+            {
+                data && data.length > 0 && data.map((info, idx) => (
+                    <FeedCard 
+                    key={idx}
+                    cardTitle={info.post_title}
+                    cardPhoto={info.post_image}
+                    userImage={info.user_image}
+                    userName={info.user_name}
+                    likeCount={info.like_count}
+                    commentCount={info.comment_count}
+                />
+                ))
+            }
+                </div>
     </div>
 }
 
