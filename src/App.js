@@ -1,7 +1,8 @@
+import Landing from "./pages/Landing";
 
 
 const App = () => {
-  return <h1>Hello World</h1>
+  return <Landing />
 }
 
 export default App;
