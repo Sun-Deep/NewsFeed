@@ -8,6 +8,7 @@ import InputText from '../../components/atoms/Form/InputText'
 import ToggleOn from '../../components/atoms/Toggle/ToggleOn'
 import InputFile from '../../components/atoms/Form/InputFile'
 import ToggleOff from '../../components/atoms/Toggle/ToggleOff'
+import Loading from '../../components/atoms/Loading'
 
 
 const Landing = () => {
@@ -16,6 +17,7 @@ const Landing = () => {
     const [apiEndpoint, setApiEndpoint] = useState('')
     const [fileName, setFileName] = useState('')
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleToggle = () => {
         setIsFile(!isFile)
@@ -30,22 +32,27 @@ const Landing = () => {
     }
 
     const handleSearch = () => {
+        setIsLoading(true)
         axios.get(apiEndpoint).then((res) => {
             console.log(res.data)
             if(res.data.length > 0){
                 setData(res.data)
+                setIsLoading(false)
             }
         }).catch((err) => {
             alert(err.response.data)
+            setIsLoading(false)
         })
     }
 
     const handleFile = () => {
+        setIsLoading(true)
         const fileReader = new FileReader()
         fileReader.readAsText(fileName, "UTF-8");
         fileReader.onload = e => {
             setData(JSON.parse(e.target.result));
         };
+        setIsLoading(false)
     }
 
     return <div
@@ -65,7 +72,7 @@ const Landing = () => {
                         apiEndpoint={apiEndpoint}
                         handleApiEndpoint={handleApiEndpoint}
                     />
-                   <PrimaryButton 
+                    <PrimaryButton 
                         text='search'
                         handleAction={handleSearch}
                     />
@@ -78,10 +85,10 @@ const Landing = () => {
                     fileName={fileName}
                     handleFile={handleFileName}
                 />
-                  <PrimaryButton 
+                <PrimaryButton 
                     text='upload'
                     handleAction={handleFile}
-                />
+                /> 
              </div>
            }
           
@@ -100,11 +107,8 @@ const Landing = () => {
         >
 
             {
-
-            }
-
-            {
-                data && data.length > 0 && data.map((info, idx) => (
+                isLoading ? <Loading />
+                : data.length > 0 && data.map((info, idx) => (
                     <FeedCard 
                     key={idx}
                     cardTitle={info.post_title}
@@ -116,7 +120,7 @@ const Landing = () => {
                 />
                 ))
             }
-                </div>
+        </div>
     </div>
 }
 
